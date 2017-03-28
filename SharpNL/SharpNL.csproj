@@ -1,0 +1,662 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0FB2DE8A-7754-425B-8B8F-2EAD2DFD8192}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SharpNL</RootNamespace>
+    <AssemblyName>SharpNL</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <Description>An independent reimplementation of the Apache OpenNLP software library in C#</Description>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>6</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\SharpNL.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Linux|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ZIPLIB MONO</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>6</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release Linux|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;ZIPLIB MONO</DefineConstants>
+    <DocumentationFile>bin\Release\SharpNL.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>3</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseObject.cs" />
+    <Compile Include="Chunker\Chunk.cs" />
+    <Compile Include="Chunker\ChunkerAnalyzer.cs" />
+    <Compile Include="Chunker\IChunk.cs" />
+    <Compile Include="Classifier\AbstractClass.cs" />
+    <Compile Include="Classifier\AbstractClassifier.cs" />
+    <Compile Include="Classifier\AbstractResult.cs" />
+    <Compile Include="Classifier\Bayesian\BayesianResult.cs" />
+    <Compile Include="Classifier\Bayesian\BayesianSettings.cs" />
+    <Compile Include="Classifier\Bayesian\BayesianClass.cs" />
+    <Compile Include="Classifier\Bayesian\BayesianClassifier.cs" />
+    <Compile Include="Classifier\Bayesian\BayesianFeature.cs" />
+    <Compile Include="Classifier\IClass.cs" />
+    <Compile Include="Classifier\IClassClassifierResult.cs" />
+    <Compile Include="Classifier\StringClass.cs" />
+    <Compile Include="Globalization\Culture.cs" />
+    <Compile Include="Globalization\Cultures\en.cs" />
+    <Compile Include="Globalization\Cultures\pt_BR.cs" />
+    <Compile Include="DefaultTextFactory.cs" />
+    <Compile Include="Document.cs" />
+    <Compile Include="DocumentCategorizer\Category.cs" />
+    <Compile Include="DocumentCategorizer\DocumentCategorizerAnalyzer.cs" />
+    <Compile Include="DocumentCategorizer\ICategory.cs" />
+    <Compile Include="Extensions\ArrayExtensions.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="Extensions\GenericExtensions.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Extensions\StringBuilderExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Formats\Brat\AttributeAnnotation.cs" />
+    <Compile Include="Globalization\GenericCulture.cs" />
+    <Compile Include="IDocument.cs" />
+    <Compile Include="Inflecter\IInfleter.cs" />
+    <Compile Include="Inflecter\Inflector.cs" />
+    <Compile Include="Inflecter\Lang\EnInflecter.cs" />
+    <Compile Include="ITextFactory.cs" />
+    <Compile Include="LanguageModel\ILanguageModel.cs" />
+    <Compile Include="LanguageModel\NGramLanguageModel.cs" />
+    <Compile Include="Lemmatizer\DefaultLemmatizerContextGenerator.cs" />
+    <Compile Include="Lemmatizer\DefaultLemmatizerSequenceValidator.cs" />
+    <Compile Include="Lemmatizer\DictionaryLemmatizer.cs" />
+    <Compile Include="Lemmatizer\ILemmatizer.cs" />
+    <Compile Include="Lemmatizer\ILemmatizerContextGenerator.cs" />
+    <Compile Include="Lemmatizer\LemmatizerFactory.cs" />
+    <Compile Include="Lemmatizer\LemmaSample.cs" />
+    <Compile Include="Lemmatizer\LemmaSampleEventStream.cs" />
+    <Compile Include="Lemmatizer\LemmaSampleSequenceStream.cs" />
+    <Compile Include="Lemmatizer\LemmaSampleStream.cs" />
+    <Compile Include="Lemmatizer\LemmatizerAnalyzer.cs" />
+    <Compile Include="Lemmatizer\LemmatizerEvaluator.cs" />
+    <Compile Include="Lemmatizer\LemmatizerME.cs" />
+    <Compile Include="Lemmatizer\LemmatizerModel.cs" />
+    <Compile Include="Lemmatizer\LemmatizerUtils.cs" />
+    <Compile Include="ML\MaxEntropy\QuasiNewton\ArrayMath.cs" />
+    <Compile Include="ML\MaxEntropy\QuasiNewton\IFunction.cs" />
+    <Compile Include="ML\MaxEntropy\QuasiNewton\L2RegFunction.cs" />
+    <Compile Include="ML\MaxEntropy\QuasiNewton\LineSearch.cs" />
+    <Compile Include="ML\MaxEntropy\QuasiNewton\LineSearchResult.cs" />
+    <Compile Include="ML\MaxEntropy\QuasiNewton\NegLogLikelihood.cs" />
+    <Compile Include="ML\MaxEntropy\QuasiNewton\ParallelNegLogLikelihood.cs" />
+    <Compile Include="ML\MaxEntropy\QuasiNewton\QNMinimizer.cs" />
+    <Compile Include="ML\MaxEntropy\IEvaluator.cs" />
+    <Compile Include="ML\MaxEntropy\QuasiNewton\QNModelEvaluator.cs" />
+    <Compile Include="ML\MaxEntropy\QuasiNewton\QNTrainer.cs" />
+    <Compile Include="ML\MaxEntropy\QuasiNewton\QNMinimizerUpdateInfo.cs" />
+    <Compile Include="ML\MaxEntropy\QuasiNewton\QuadraticFunction.cs" />
+    <Compile Include="ML\MaxEntropy\QuasiNewton\RosenbrockFunction.cs" />
+    <Compile Include="ML\Model\IndexHashTable.cs" />
+    <Compile Include="ML\Model\PlainTextFileDataWriter.cs" />
+    <Compile Include="ML\NaiveBayes\BinaryNaiveBayesModelWriter.cs" />
+    <Compile Include="ML\NaiveBayes\BinaryNaiveBayesModelReader.cs" />
+    <Compile Include="ML\NaiveBayes\IProbability.cs" />
+    <Compile Include="ML\NaiveBayes\LogProbabilities.cs" />
+    <Compile Include="ML\NaiveBayes\LogProbability.cs" />
+    <Compile Include="ML\NaiveBayes\NaiveBayesEvalParameters.cs" />
+    <Compile Include="ML\NaiveBayes\NaiveBayesModel.cs" />
+    <Compile Include="ML\NaiveBayes\NaiveBayesModelReader.cs" />
+    <Compile Include="ML\NaiveBayes\NaiveBayesModelWriter.cs" />
+    <Compile Include="ML\NaiveBayes\NaiveBayesTrainer.cs" />
+    <Compile Include="ML\NaiveBayes\PlainTextNaiveBayesModelReader.cs" />
+    <Compile Include="ML\NaiveBayes\PlainTextNaiveBayesModelWriter.cs" />
+    <Compile Include="ML\NaiveBayes\Probabilities.cs" />
+    <Compile Include="ML\NaiveBayes\Probability.cs" />
+    <Compile Include="NameFind\Entity.cs" />
+    <Compile Include="NameFind\IEntity.cs" />
+    <Compile Include="NameFind\NameFinderAnalyzer.cs" />
+    <Compile Include="NGram\NGramUtils.cs" />
+    <Compile Include="Parser\ParserAnalyzer.cs" />
+    <Compile Include="Parser\ParserChunkerFactory.cs" />
+    <Compile Include="Parser\ParserCrossEvaluator.cs" />
+    <Compile Include="POSTag\POSTaggerAnalyzer.cs" />
+    <Compile Include="Classifier\IClassClassifier.cs" />
+    <Compile Include="SentenceDetector\ISentence.cs" />
+    <Compile Include="SentenceDetector\Sentence.cs" />
+    <Compile Include="Stemmer\AbstractStemmer.cs" />
+    <Compile Include="Stemmer\AbstractAlgorithm.cs" />
+    <Compile Include="Stemmer\Porter\Algorithm\English.cs" />
+    <Compile Include="Stemmer\Porter\Algorithm\Portuguese.cs" />
+    <Compile Include="Stemmer\Porter\PorterAlgorithm.cs" />
+    <Compile Include="Stemmer\Porter\PorterStemmer.cs" />
+    <Compile Include="Stemmer\RSLP\RSLPRule.cs" />
+    <Compile Include="Stemmer\RSLP\RSLPStemmer.cs" />
+    <Compile Include="Stemmer\RSLP\RSLPStep.cs" />
+    <Compile Include="Stemmer\Stem.cs" />
+    <Compile Include="Stemmer\Suffixes.cs" />
+    <Compile Include="Summarizer\AbstractSummarizer.cs" />
+    <Compile Include="Summarizer\ISummarizer.cs" />
+    <Compile Include="Summarizer\SimpleSummarizer.cs" />
+    <Compile Include="Summarizer\SimpleSummarizerMethods.cs" />
+    <Compile Include="Tokenize\IToken.cs" />
+    <Compile Include="Tokenize\Token.cs" />
+    <Compile Include="Tokenize\TokenUtilities.cs" />
+    <Compile Include="Utility\AbstractStopwordProvider.cs" />
+    <Compile Include="Utility\CacheProvider.cs" />
+    <Compile Include="Utility\Disposable.cs" />
+    <Compile Include="Utility\Evaluation\CrossEvaluator.cs" />
+    <Compile Include="Utility\FeatureGen\BrownBigramFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\BrownCluster.cs" />
+    <Compile Include="Utility\FeatureGen\BrownTokenClasses.cs" />
+    <Compile Include="Utility\FeatureGen\BrownTokenClassFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\BrownTokenFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\BrownClusterBigramFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\BrownClusterTokenClassFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\BrownClusterTokenFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\PreviousTwoMapFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\TrigramNameFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\WordClusterDictionary.cs" />
+    <Compile Include="Utility\InsufficientTrainingDataException.cs" />
+    <Compile Include="Utility\IStopwordProvider.cs" />
+    <Compile Include="Utility\Java\IIterator.cs" />
+    <Compile Include="Utility\Java\IteratorAdapter.cs" />
+    <Compile Include="Utility\Java\StringTokenizer.cs" />
+    <Compile Include="Utility\StringTokenizer.cs" />
+    <Compile Include="Utility\StringToken.cs" />
+    <Compile Include="Tokenize\TokenizerAnalyzer.cs" />
+    <Compile Include="Analyzer\AbstractAnalyzer.cs" />
+    <Compile Include="Analyzer\AggregateAnalyzer.cs" />
+    <Compile Include="Analyzer\AnalyzerException.cs" />
+    <Compile Include="Analyzer\IAnalyzer.cs" />
+    <Compile Include="Dictionary\DictionaryBase.cs" />
+    <Compile Include="Formats\Ad\AdContractionNameSampleStream.cs" />
+    <Compile Include="Formats\Ad\AdNameSampleStream.cs" />
+    <Compile Include="Formats\Ad\AdPosSampleStream.cs" />
+    <Compile Include="Formats\Ad\AdTokenSampleStream.cs" />
+    <Compile Include="Formats\Ad\PortugueseContractionUtility.cs" />
+    <Compile Include="Formats\Ptb\IResolver.cs" />
+    <Compile Include="Formats\Ptb\Lang\DefaultResolver.cs" />
+    <Compile Include="Formats\Ptb\Lang\pt\Resolver.cs" />
+    <Compile Include="Formats\Ptb\PtbNode.cs" />
+    <Compile Include="Formats\Ptb\PtbParseSampleStream.cs" />
+    <Compile Include="Formats\Ptb\PtbPosSampleStream.cs" />
+    <Compile Include="Formats\Ptb\PtbSentenceSampleStream.cs" />
+    <Compile Include="Formats\Ptb\PtbStreamReader.cs" />
+    <Compile Include="Formats\Ptb\PtbSampleStream.cs" />
+    <Compile Include="Formats\Ptb\PtbTokenSampleStream.cs" />
+    <Compile Include="ModelType.cs" />
+    <Compile Include="Chunker\ChunkerCrossValidator.cs" />
+    <Compile Include="Chunker\ChunkerEvaluator.cs" />
+    <Compile Include="Chunker\ChunkerEventStream.cs" />
+    <Compile Include="Chunker\ChunkerFactory.cs" />
+    <Compile Include="Chunker\ChunkerME.cs" />
+    <Compile Include="Chunker\ChunkerModel.cs" />
+    <Compile Include="Chunker\ChunkSample.cs" />
+    <Compile Include="Chunker\ChunkSampleSequenceStream.cs" />
+    <Compile Include="Chunker\ChunkSampleStream.cs" />
+    <Compile Include="Chunker\DefaultChunkerContextGenerator.cs" />
+    <Compile Include="Chunker\DefaultChunkerSequenceValidator.cs" />
+    <Compile Include="Chunker\IChunker.cs" />
+    <Compile Include="Chunker\IChunkerContextGenerator.cs" />
+    <Compile Include="Dictionary\Attributes.cs" />
+    <Compile Include="Dictionary\Dictionary.cs" />
+    <Compile Include="Dictionary\Entry.cs" />
+    <Compile Include="DocumentCategorizer\BagOfWordsFeatureGenerator.cs" />
+    <Compile Include="DocumentCategorizer\DocumentCategorizerContextGenerator.cs" />
+    <Compile Include="DocumentCategorizer\DocumentCategorizerEvaluator.cs" />
+    <Compile Include="DocumentCategorizer\DocumentCategorizerEventStream.cs" />
+    <Compile Include="DocumentCategorizer\DocumentCategorizerFactory.cs" />
+    <Compile Include="DocumentCategorizer\DocumentCategorizerModel.cs" />
+    <Compile Include="DocumentCategorizer\DocumentCategorizerME.cs" />
+    <Compile Include="DocumentCategorizer\DocumentSample.cs" />
+    <Compile Include="DocumentCategorizer\DocumentSampleStream.cs" />
+    <Compile Include="DocumentCategorizer\IDocumentCategorizer.cs" />
+    <Compile Include="DocumentCategorizer\IFeatureGenerator.cs" />
+    <Compile Include="DocumentCategorizer\NGramFeatureGenerator.cs" />
+    <Compile Include="Expressions.cs" />
+    <Compile Include="InternalExtensions.cs" />
+    <Compile Include="Formats\Ad\AdChunkSampleStream.cs" />
+    <Compile Include="Formats\Ad\AdLeaf.cs" />
+    <Compile Include="Formats\Ad\AdNode.cs" />
+    <Compile Include="Formats\Ad\AdSentence.cs" />
+    <Compile Include="Formats\Ad\AdSentenceParser.cs" />
+    <Compile Include="Formats\Ad\AdSentenceSampleStream.cs" />
+    <Compile Include="Formats\Ad\AdSentenceStream.cs" />
+    <Compile Include="Formats\Ad\AdTreeElement.cs" />
+    <Compile Include="Formats\BioNLP2004NameSampleStream.cs" />
+    <Compile Include="Formats\Brat\AnnotationConfiguration.cs" />
+    <Compile Include="Formats\Brat\BratAnnotation.cs" />
+    <Compile Include="Formats\Brat\BratAnnotationStream.cs" />
+    <Compile Include="Formats\Brat\BratDocument.cs" />
+    <Compile Include="Formats\Brat\BratDocumentStream.cs" />
+    <Compile Include="Formats\Brat\BratParser.cs" />
+    <Compile Include="Formats\Brat\RelationAnnotation.cs" />
+    <Compile Include="Formats\Brat\SpanAnnotation.cs" />
+    <Compile Include="Formats\CoNLL.cs" />
+    <Compile Include="Formats\CoNLL02NameSampleStream.cs" />
+    <Compile Include="Formats\CoNLL03NameSampleStream.cs" />
+    <Compile Include="Formats\CoNLLXPOSSampleStream.cs" />
+    <Compile Include="Formats\Convert\AbstractToSentenceSampleStream.cs" />
+    <Compile Include="Formats\Convert\FileToByteArraySampleStream.cs" />
+    <Compile Include="Formats\Convert\FileToStringSampleStream.cs" />
+    <Compile Include="Formats\Convert\NameToSentenceSampleStream.cs" />
+    <Compile Include="Formats\Convert\NameToTokenSampleStream.cs" />
+    <Compile Include="Formats\Convert\ParseToPOSSampleStream.cs" />
+    <Compile Include="Formats\Convert\POSToSentenceSampleStream.cs" />
+    <Compile Include="Formats\Convert\POSToTokenSampleStream.cs" />
+    <Compile Include="Formats\DirectorySampleStream.cs" />
+    <Compile Include="Formats\Muc\DocumentSplitterStream.cs" />
+    <Compile Include="Formats\Muc\MucElementNames.cs" />
+    <Compile Include="Formats\Muc\MucNameContentHandler.cs" />
+    <Compile Include="Formats\Muc\MucNameSampleStream.cs" />
+    <Compile Include="Formats\Muc\SgmlParser.cs" />
+    <Compile Include="Formats\OntoNotes\DocumentToLineStream.cs" />
+    <Compile Include="Formats\OntoNotes\OntoNotesNameSampleStream.cs" />
+    <Compile Include="Formats\OntoNotes\OntoNotesParseSampleStream.cs" />
+    <Compile Include="Monitor.cs" />
+    <Compile Include="MonitorExceptionEventArgs.cs" />
+    <Compile Include="MonitorMessageEventArgs.cs" />
+    <Compile Include="Parser\IHeadRules.cs" />
+    <Compile Include="SentenceDetector\SentenceDetectorAnalyzer.cs" />
+    <Compile Include="NameFind\RegexNameFinder.cs" />
+    <Compile Include="NameFind\TokenNameFinderCrossValidator.cs" />
+    <Compile Include="NGram\NGramGenerator.cs" />
+    <Compile Include="Stemmer\Snowball\SnowballStemmer.cs" />
+    <Compile Include="Stemmer\Among.cs" />
+    <Compile Include="Stemmer\IStemmer.cs" />
+    <Compile Include="Stemmer\Snowball\CzechStemmer.cs" />
+    <Compile Include="Stemmer\Snowball\DanishStemmer.cs" />
+    <Compile Include="Stemmer\Snowball\DutchStemmer.cs" />
+    <Compile Include="Stemmer\Snowball\EnglishStemmer.cs" />
+    <Compile Include="Stemmer\Snowball\FinnishStemmer.cs" />
+    <Compile Include="Stemmer\Snowball\FrenchStemmer.cs" />
+    <Compile Include="Stemmer\Snowball\GermanStemmer.cs" />
+    <Compile Include="Stemmer\Snowball\HungarianStemmer.cs" />
+    <Compile Include="Stemmer\Snowball\ItalianStemmer.cs" />
+    <Compile Include="Stemmer\Snowball\NorwegianStemmer.cs" />
+    <Compile Include="Stemmer\Snowball\PortugalStemmer.cs" />
+    <Compile Include="Stemmer\Snowball\RomanianStemmer.cs" />
+    <Compile Include="Stemmer\Snowball\RussianStemmer.cs" />
+    <Compile Include="Stemmer\Snowball\SpanishStemmer.cs" />
+    <Compile Include="Stemmer\Snowball\SwedishStemmer.cs" />
+    <Compile Include="Utility\StringTokenKind.cs" />
+    <Compile Include="Utility\ModelManager.cs" />
+    <Compile Include="Utility\Model\ModelInfo.cs" />
+    <Compile Include="Utility\Model\ModelInfoEventArgs.cs" />
+    <Compile Include="Utility\TextPosition.cs" />
+    <Compile Include="Utility\TrainingInfo.cs" />
+    <Compile Include="Utility\TypeClassAttribute.cs" />
+    <Compile Include="Utility\SegmenterObjectStream.cs" />
+    <Compile Include="Utility\TypeResolver.cs" />
+    <Compile Include="Library.cs" />
+    <Compile Include="ML\AbstractEventModelSequenceTrainer.cs" />
+    <Compile Include="ML\MaxEntropy\BasicContextGenerator.cs" />
+    <Compile Include="ML\MaxEntropy\IContextGenerator.cs" />
+    <Compile Include="ML\MaxEntropy\IO\GISModelReader.cs" />
+    <Compile Include="ML\MaxEntropy\IO\QNModelReader.cs" />
+    <Compile Include="ML\MaxEntropy\QuasiNewton\QNModel.cs" />
+    <Compile Include="ML\MaxEntropy\RealBasicEventStream.cs" />
+    <Compile Include="ML\Model\AbstractModelReader.cs" />
+    <Compile Include="ML\Model\AbstractModelWriter.cs" />
+    <Compile Include="ML\AbstractTrainer.cs" />
+    <Compile Include="ML\BeamSearch.cs" />
+    <Compile Include="ML\Model\BinaryFileDataWriter.cs" />
+    <Compile Include="ML\Model\GenericModelReader.cs" />
+    <Compile Include="ML\Model\GenericModelWriter.cs" />
+    <Compile Include="ML\IEventModelSequenceTrainer.cs" />
+    <Compile Include="ML\ISequenceClassificationModel.cs" />
+    <Compile Include="ML\ISequenceTrainer.cs" />
+    <Compile Include="ML\MaxEntropy\GIS.cs" />
+    <Compile Include="ML\MaxEntropy\GISModel.cs" />
+    <Compile Include="ML\MaxEntropy\GISTrainer.cs" />
+    <Compile Include="ML\MaxEntropy\IO\BinaryGISModelWriter.cs" />
+    <Compile Include="ML\MaxEntropy\IO\BinaryQNModelWriter.cs" />
+    <Compile Include="ML\MaxEntropy\IO\GISModelWriter.cs" />
+    <Compile Include="ML\MaxEntropy\IO\QNModelWriter.cs" />
+    <Compile Include="ML\Model\AbstractDataIndexer.cs" />
+    <Compile Include="ML\Model\AbstractEventTrainer.cs" />
+    <Compile Include="ML\Model\AbstractModel.cs" />
+    <Compile Include="ML\Model\BinaryFileDataReader.cs" />
+    <Compile Include="ML\Model\ComparableEvent.cs" />
+    <Compile Include="ML\Model\ComparablePredicate.cs" />
+    <Compile Include="ML\Model\Context.cs" />
+    <Compile Include="ML\Model\EvalParameters.cs" />
+    <Compile Include="ML\Model\Event.cs" />
+    <Compile Include="ML\Model\FileEventStream.cs" />
+    <Compile Include="ML\Model\HashSumEventStream.cs" />
+    <Compile Include="ML\Model\IDataIndexer.cs" />
+    <Compile Include="ML\Model\IDataReader.cs" />
+    <Compile Include="ML\Model\IDataWriter.cs" />
+    <Compile Include="ML\Model\IEventTrainer.cs" />
+    <Compile Include="ML\Model\IMaxentModel.cs" />
+    <Compile Include="ML\Model\IPrior.cs" />
+    <Compile Include="ML\Model\ISequenceClassificationModel.cs" />
+    <Compile Include="ML\Model\ISequenceStream.cs" />
+    <Compile Include="ML\Model\ITrainer.cs" />
+    <Compile Include="ML\Model\ModelType.cs" />
+    <Compile Include="ML\Model\MutableContext.cs" />
+    <Compile Include="ML\Model\OnePassDataIndexer.cs" />
+    <Compile Include="ML\Model\OnePassRealValueDataIndexer.cs" />
+    <Compile Include="ML\Model\PlainTextFileDataReader.cs" />
+    <Compile Include="ML\Model\RealValueFileEventStream.cs" />
+    <Compile Include="ML\Model\Sequence.cs" />
+    <Compile Include="ML\Model\SequenceStreamEventStream.cs" />
+    <Compile Include="ML\Model\TwoPassDataIndexer.cs" />
+    <Compile Include="ML\Model\UniformPrior.cs" />
+    <Compile Include="ML\Perceptron\IO\BinaryPerceptronModelReader.cs" />
+    <Compile Include="ML\Perceptron\IO\BinaryPerceptronModelWriter.cs" />
+    <Compile Include="ML\Perceptron\IO\PerceptronModelReader.cs" />
+    <Compile Include="ML\Perceptron\IO\PerceptronModelWriter.cs" />
+    <Compile Include="ML\Perceptron\IO\PlainTextPerceptronModelReader.cs" />
+    <Compile Include="ML\Perceptron\IO\PlainTextPerceptronModelWriter.cs" />
+    <Compile Include="ML\Perceptron\IO\SuffixSensitivePerceptronModelWriter.cs" />
+    <Compile Include="ML\Perceptron\PerceptronModel.cs" />
+    <Compile Include="ML\Perceptron\PerceptronTrainer.cs" />
+    <Compile Include="ML\Perceptron\SimplePerceptronSequenceTrainer.cs" />
+    <Compile Include="ML\TrainerFactory.cs" />
+    <Compile Include="ML\TrainerType.cs" />
+    <Compile Include="NameFind\BilouCodec.cs" />
+    <Compile Include="NameFind\BilouNameFinderSequenceValidator.cs" />
+    <Compile Include="NameFind\BioCodec.cs" />
+    <Compile Include="NameFind\DefaultNameContextGenerator.cs" />
+    <Compile Include="NameFind\DictionaryNameFinder.cs" />
+    <Compile Include="NameFind\INameContextGenerator.cs" />
+    <Compile Include="NameFind\ITokenNameFinder.cs" />
+    <Compile Include="NameFind\NameFinderEventStream.cs" />
+    <Compile Include="NameFind\NameFinderME.cs" />
+    <Compile Include="NameFind\NameFinderSequenceValidator.cs" />
+    <Compile Include="NameFind\NameSample.cs" />
+    <Compile Include="NameFind\NameSampleStream.cs" />
+    <Compile Include="NameFind\NameSampleSequenceStream.cs" />
+    <Compile Include="NameFind\TokenNameFinderEvaluator.cs" />
+    <Compile Include="NameFind\TokenNameFinderFactory.cs" />
+    <Compile Include="NameFind\TokenNameFinderModel.cs" />
+    <Compile Include="NGram\NGramModel.cs" />
+    <Compile Include="Parser\AbstractBottomUpParser.cs" />
+    <Compile Include="Parser\AbstractContextGenerator.cs" />
+    <Compile Include="Parser\AbstractHeadRule.cs" />
+    <Compile Include="Parser\AbstractParserEventStream.cs" />
+    <Compile Include="Parser\ChunkContextGenerator.cs" />
+    <Compile Include="Parser\Chunking\BuildContextGenerator.cs" />
+    <Compile Include="Parser\Chunking\CheckContextGenerator.cs" />
+    <Compile Include="Parser\Chunking\Parser.cs" />
+    <Compile Include="Parser\Chunking\ParserEventStream.cs" />
+    <Compile Include="Parser\ChunkSampleStream.cs" />
+    <Compile Include="Parser\Cons.cs" />
+    <Compile Include="Parser\Constituent.cs" />
+    <Compile Include="Parser\IGapLabeler.cs" />
+    <Compile Include="Parser\AbstractHeadRules.cs" />
+    <Compile Include="Parser\IParser.cs" />
+    <Compile Include="Parser\Lang\en\HeadRule.cs" />
+    <Compile Include="Parser\Lang\en\HeadRules.cs" />
+    <Compile Include="Parser\Lang\HeadRulesManager.cs" />
+    <Compile Include="Parser\Parse.cs" />
+    <Compile Include="Parser\ParserChunkerSequenceValidator.cs" />
+    <Compile Include="Parser\ParserEvaluator.cs" />
+    <Compile Include="Parser\ParserEventTypeEnum.cs" />
+    <Compile Include="Parser\ParserFactory.cs" />
+    <Compile Include="Parser\ParserModel.cs" />
+    <Compile Include="Parser\ParserTool.cs" />
+    <Compile Include="Parser\ParserType.cs" />
+    <Compile Include="Parser\ParseSampleStream.cs" />
+    <Compile Include="Parser\PosSampleStream.cs" />
+    <Compile Include="Parser\TreeInsert\AttachContextGenerator.cs" />
+    <Compile Include="Parser\TreeInsert\BuildContextGenerator.cs" />
+    <Compile Include="Parser\TreeInsert\CheckContextGenerator.cs" />
+    <Compile Include="Parser\TreeInsert\Parser.cs" />
+    <Compile Include="Parser\TreeInsert\ParserEventStream.cs" />
+    <Compile Include="POSTag\DefaultPOSContextGenerator.cs" />
+    <Compile Include="POSTag\DefaultPOSSequenceValidator.cs" />
+    <Compile Include="POSTag\IMutableTagDictionary.cs" />
+    <Compile Include="POSTag\IPOSContextGenerator.cs" />
+    <Compile Include="POSTag\IPOSTagger.cs" />
+    <Compile Include="POSTag\ITagDictionary.cs" />
+    <Compile Include="POSTag\Language\pt\GenderUtil.cs" />
+    <Compile Include="POSTag\Language\pt\POSContextGenerator.cs" />
+    <Compile Include="POSTag\Language\pt\POSSequenceValidator.cs" />
+    <Compile Include="POSTag\POSDictionary.cs" />
+    <Compile Include="POSTag\POSEvaluator.cs" />
+    <Compile Include="POSTag\POSModel.cs" />
+    <Compile Include="POSTag\POSSample.cs" />
+    <Compile Include="POSTag\POSSampleEventStream.cs" />
+    <Compile Include="POSTag\POSSampleSequenceStream.cs" />
+    <Compile Include="POSTag\POSTaggerFactory.cs" />
+    <Compile Include="POSTag\POSTaggerME.cs" />
+    <Compile Include="POSTag\Triple.cs" />
+    <Compile Include="POSTag\WordTagSampleStream.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SentenceDetector\DefaultEndOfSentenceScanner.cs" />
+    <Compile Include="SentenceDetector\DefaultSentenceContextGenerator.cs" />
+    <Compile Include="SentenceDetector\EmptyLinePreprocessorStream.cs" />
+    <Compile Include="SentenceDetector\IEndOfSentenceScanner.cs" />
+    <Compile Include="SentenceDetector\ISentenceContextGenerator.cs" />
+    <Compile Include="SentenceDetector\ISentenceDetector.cs" />
+    <Compile Include="SentenceDetector\Language\Factory.cs" />
+    <Compile Include="SentenceDetector\Language\pt\PtSentenceContextGenerator.cs" />
+    <Compile Include="SentenceDetector\Language\pt\PtSentenceDetectorFactory.cs" />
+    <Compile Include="SentenceDetector\NewlineSentenceDetector.cs" />
+    <Compile Include="SentenceDetector\Language\th\ThSentenceContextGenerator.cs" />
+    <Compile Include="SentenceDetector\SentenceDetectorEvaluator.cs" />
+    <Compile Include="SentenceDetector\SentenceDetectorFactory.cs" />
+    <Compile Include="SentenceDetector\SentenceDetectorME.cs" />
+    <Compile Include="SentenceDetector\SentenceEventStream.cs" />
+    <Compile Include="SentenceDetector\SentenceModel.cs" />
+    <Compile Include="SentenceDetector\SentenceSample.cs" />
+    <Compile Include="SentenceDetector\SentenceSampleStream.cs" />
+    <Compile Include="Tokenize\AbstractTokenizer.cs" />
+    <Compile Include="Tokenize\CharacterEnum.cs" />
+    <Compile Include="Tokenize\DefaultTokenContextGenerator.cs" />
+    <Compile Include="Tokenize\DetokenizationDictionary.cs" />
+    <Compile Include="Tokenize\DetokenizationOperation.cs" />
+    <Compile Include="Tokenize\DictionaryDetokenizer.cs" />
+    <Compile Include="Tokenize\IDetokenizer.cs" />
+    <Compile Include="Tokenize\ITokenContextGenerator.cs" />
+    <Compile Include="Tokenize\ITokenizer.cs" />
+    <Compile Include="Tokenize\Language\en\EnTokenSampleStream.cs" />
+    <Compile Include="Tokenize\Language\Factory.cs" />
+    <Compile Include="Tokenize\Language\pt\PtTokenizerFactory.cs" />
+    <Compile Include="Tokenize\Language\pt\PtTokenContextGenerator.cs" />
+    <Compile Include="Tokenize\SimpleTokenizer.cs" />
+    <Compile Include="Tokenize\TokenizerFactory.cs" />
+    <Compile Include="Tokenize\TokenizerME.cs" />
+    <Compile Include="Tokenize\TokenizerModel.cs" />
+    <Compile Include="Tokenize\TokenizerStream.cs" />
+    <Compile Include="Tokenize\TokenSample.cs" />
+    <Compile Include="Tokenize\TokenSampleStream.cs" />
+    <Compile Include="Tokenize\TokSpanEventStream.cs" />
+    <Compile Include="Tokenize\WhitespaceTokenizer.cs" />
+    <Compile Include="Tokenize\WhitespaceTokenStream.cs" />
+    <Compile Include="Utility\AbstractEventStream.cs" />
+    <Compile Include="Utility\AbstractObjectStream.cs" />
+    <Compile Include="Utility\BaseToolFactory.cs" />
+    <Compile Include="Utility\BeamSearch.cs" />
+    <Compile Include="Utility\Cache.cs" />
+    <Compile Include="Utility\CollectionObjectStream.cs" />
+    <Compile Include="Utility\Evaluation\CrossValidationPartitioner.cs" />
+    <Compile Include="Utility\Evaluation\Evaluator.cs" />
+    <Compile Include="Utility\Evaluation\FMeasure.cs" />
+    <Compile Include="Utility\Evaluation\IEvaluationMonitor.cs" />
+    <Compile Include="Utility\Evaluation\Mean.cs" />
+    <Compile Include="Utility\FeatureGen\AdditionalContextFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\AggregatedFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\BigramNameFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\CachedFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\CharacterNgramFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\CustomFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\DictionaryFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\AggregatedFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\BigramNameFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\CachedFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\CharacterNgramFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\CustomFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\DefinitionFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\DictionaryFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\DocumentBeginFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\PrefixFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\PreviousMapFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\SentenceFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\SuffixFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\TokenClassFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\TokenFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\TokenPatternFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\WordClusterFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\Factories\WindowFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\FeatureGeneratorAdapter.cs" />
+    <Compile Include="Utility\FeatureGen\FeatureGeneratorException.cs" />
+    <Compile Include="Utility\FeatureGen\FeatureGeneratorUtil.cs" />
+    <Compile Include="Utility\FeatureGen\GeneratorFactory.cs" />
+    <Compile Include="Utility\FeatureGen\IAdaptiveFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\IdentityFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\FeatureGeneratorResourceProvider.cs" />
+    <Compile Include="Utility\FeatureGen\InSpanGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\OutcomePriorFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\PrefixFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\PreviousMapFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\SentenceFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\StringPattern.cs" />
+    <Compile Include="Utility\FeatureGen\SuffixFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\TokenClassFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\TokenFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\TokenPatternFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\WindowFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\WordClusterFeatureGenerator.cs" />
+    <Compile Include="Utility\FeatureGen\XmlFeatureGeneratorFactory.cs" />
+    <Compile Include="Utility\FilterObjectStream.cs" />
+    <Compile Include="Utility\GenericObjectStream.cs" />
+    <Compile Include="Utility\IHeap.cs" />
+    <Compile Include="Utility\IBeamSearchContextGenerator.cs" />
+    <Compile Include="Utility\IInputStreamFactory.cs" />
+    <Compile Include="Utility\InvalidFormatException.cs" />
+    <Compile Include="Utility\ISequenceCodec.cs" />
+    <Compile Include="Utility\ISequenceValidator.cs" />
+    <Compile Include="Utility\ListHeap.cs" />
+    <Compile Include="Utility\MockInputStreamFactory.cs" />
+    <Compile Include="Utility\ParagraphStream.cs" />
+    <Compile Include="Utility\Parameters.cs" />
+    <Compile Include="Utility\Serialization\ArtifactProvider.cs" />
+    <Compile Include="Utility\Model\BaseModel.cs" />
+    <Compile Include="Utility\Model\GenericModelSerializer.cs" />
+    <Compile Include="Utility\IObjectStream.cs" />
+    <Compile Include="Utility\Model\ModelUtility.cs" />
+    <Compile Include="Utility\PlainTextByLineStream.cs" />
+    <Compile Include="Utility\Properties.cs" />
+    <Compile Include="Utility\Sequence.cs" />
+    <Compile Include="Utility\Serialization\Delegates.cs" />
+    <Compile Include="Utility\Span.cs" />
+    <Compile Include="Utility\StringList.cs" />
+    <Compile Include="Utility\ToolFactoryManager.cs" />
+    <Compile Include="Utility\TrainingParameters.cs" />
+    <Compile Include="Utility\Version.cs" />
+    <Compile Include="Utility\UnclosableStream.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Utility\Serialization\LazyArtifact.cs" />
+    <Compile Include="SharpZipLib\Zip\ZipInputStream.cs" />
+    <Compile Include="SharpZipLib\Zip\Compression\Deflater.cs" />
+    <Compile Include="SharpZipLib\Zip\Compression\DeflaterConstants.cs" />
+    <Compile Include="SharpZipLib\Zip\Compression\DeflaterEngine.cs" />
+    <Compile Include="SharpZipLib\Zip\Compression\DeflaterHuffman.cs" />
+    <Compile Include="SharpZipLib\Zip\Compression\DeflaterPending.cs" />
+    <Compile Include="SharpZipLib\Zip\Compression\Inflater.cs" />
+    <Compile Include="SharpZipLib\Zip\Compression\InflaterDynHeader.cs" />
+    <Compile Include="SharpZipLib\Zip\Compression\InflaterHuffmanTree.cs" />
+    <Compile Include="SharpZipLib\Zip\Compression\PendingBuffer.cs" />
+    <Compile Include="SharpZipLib\Zip\Compression\Streams\DeflaterOutputStream.cs" />
+    <Compile Include="SharpZipLib\Zip\Compression\Streams\InflaterInputStream.cs" />
+    <Compile Include="SharpZipLib\Zip\Compression\Streams\OutputWindow.cs" />
+    <Compile Include="SharpZipLib\Zip\Compression\Streams\StreamManipulator.cs" />
+    <Compile Include="SharpZipLib\Checksums\Adler32.cs" />
+    <Compile Include="SharpZipLib\Checksums\Crc32.cs" />
+    <Compile Include="SharpZipLib\Checksums\IChecksum.cs" />
+    <Compile Include="SharpZipLib\Checksums\StrangeCrc.cs" />
+    <Compile Include="SharpZipLib\GZip\GZipConstants.cs" />
+    <Compile Include="SharpZipLib\GZip\GZipException.cs" />
+    <Compile Include="SharpZipLib\GZip\GzipInputStream.cs" />
+    <Compile Include="SharpZipLib\Encryption\PkzipClassic.cs" />
+    <Compile Include="SharpZipLib\Encryption\ZipAESStream.cs" />
+    <Compile Include="SharpZipLib\Encryption\ZipAESTransform.cs" />
+    <Compile Include="SharpZipLib\SharpZipBaseException.cs" />
+    <Compile Include="SharpZipLib\Zip\IEntryFactory.cs" />
+    <Compile Include="SharpZipLib\Zip\WindowsNameTransform.cs" />
+    <Compile Include="SharpZipLib\Zip\ZipConstants.cs" />
+    <Compile Include="SharpZipLib\Zip\ZipEntry.cs" />
+    <Compile Include="SharpZipLib\Zip\ZipEntryFactory.cs" />
+    <Compile Include="SharpZipLib\Zip\ZipException.cs" />
+    <Compile Include="SharpZipLib\Zip\ZipExtraData.cs" />
+    <Compile Include="SharpZipLib\Zip\ZipFile.cs" />
+    <Compile Include="SharpZipLib\Zip\ZipHelperStream.cs" />
+    <Compile Include="SharpZipLib\Zip\ZipNameTransform.cs" />
+    <Compile Include="SharpZipLib\Zip\ZipOutputStream.cs" />
+    <Compile Include="SharpZipLib\Core\FileSystemScanner.cs" />
+    <Compile Include="SharpZipLib\Core\INameTransform.cs" />
+    <Compile Include="SharpZipLib\Core\IScanFilter.cs" />
+    <Compile Include="SharpZipLib\Core\NameFilter.cs" />
+    <Compile Include="SharpZipLib\Core\PathFilter.cs" />
+    <Compile Include="SharpZipLib\Core\StreamUtils.cs" />
+    <Compile Include="SharpZipLib\Core\WindowsPathUtils.cs" />
+    <Compile Include="SharpZipLib\GZip\GzipOutputStream.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup />
+</Project>
